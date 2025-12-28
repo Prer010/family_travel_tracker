@@ -94,12 +94,22 @@ JOIN class c ON c.id = e.class_id;
 
 -- EXERCISE SOLUTION AND SETUP --
 
-DROP TABLE IF EXISTS visited_countries, users;
+DROP TABLE IF EXISTS visited_countries, users, accounts;
+
+-- Create accounts table for authentication
+CREATE TABLE accounts(
+id SERIAL PRIMARY KEY,
+name VARCHAR(100) NOT NULL,
+email VARCHAR(100) UNIQUE NOT NULL,
+password VARCHAR(255) NOT NULL,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
 CREATE TABLE users(
 id SERIAL PRIMARY KEY,
 name VARCHAR(15) UNIQUE NOT NULL,
-color VARCHAR(15)
+color VARCHAR(15),
+account_id INTEGER REFERENCES accounts(id) ON DELETE CASCADE
 );
 
 CREATE TABLE visited_countries(
@@ -108,13 +118,4 @@ country_code CHAR(2) NOT NULL,
 user_id INTEGER REFERENCES users(id)
 );
 
-INSERT INTO users (name, color)
-VALUES ('Angela', 'teal'), ('Jack', 'powderblue');
-
-INSERT INTO visited_countries (country_code, user_id)
-VALUES ('FR', 1), ('GB', 1), ('CA', 2), ('FR', 2 );
-
-SELECT *
-FROM visited_countries
-JOIN users
-ON users.id = user_id;
+-- No default users - they will be created when accounts sign up

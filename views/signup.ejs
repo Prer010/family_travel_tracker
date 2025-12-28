@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - Travel Tracker</title>
+  <link rel="stylesheet" href="./styles/main.css">
+  <style>
+    .auth-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f8f9fa;
+    }
+    
+    .auth-form {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    
+    .auth-title {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #333;
+    }
+    
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #555;
+      font-weight: 500;
+    }
+    
+    .form-group input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+    
+    .form-group input:focus {
+      outline: none;
+      border-color: #28a745;
+      box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.25);
+    }
+    
+    .auth-btn {
+      width: 100%;
+      padding: 0.75rem;
+      background: linear-gradient(135deg, 
+        #155724 0%, 
+        #28a745 25%, 
+        #34ce57 50%, 
+        #28a745 75%, 
+        #155724 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(21, 87, 36, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .auth-btn:hover {
+      background: linear-gradient(135deg, 
+        #28a745 0%, 
+        #34ce57 25%, 
+        #48d364 50%, 
+        #34ce57 75%, 
+        #28a745 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(21, 87, 36, 0.4);
+    }
+    
+    .auth-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.2), 
+        transparent);
+      transition: left 0.5s;
+    }
+    
+    .auth-btn:hover::before {
+      left: 100%;
+    }
+    
+    .auth-links {
+      text-align: center;
+      margin-top: 1rem;
+    }
+    
+    .auth-links a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    
+    .auth-links a:hover {
+      text-decoration: underline;
+    }
+    
+    .error-message {
+      background-color: #f8d7da;
+      color: #721c24;
+      padding: 0.75rem;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+      border: 1px solid #f5c6cb;
+    }
+  </style>
+</head>
+<body>
+  <div class="auth-container">
+    <form class="auth-form" action="/signup" method="post">
+      <h2 class="auth-title">Join Travel Tracker!</h2>
+      
+      <% if (locals.error) { %>
+        <div class="error-message"><%= error %></div>
+      <% } %>
+      
+      <div class="form-group">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required minlength="6">
+      </div>
+      
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required minlength="6">
+      </div>
+      
+      <button type="submit" class="auth-btn">Sign Up</button>
+      
+      <div class="auth-links">
+        <p>Already have an account? <a href="/login">Login here</a></p>
+        <p><a href="/">Back to Home</a></p>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

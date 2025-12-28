@@ -1,3 +1,50 @@
+/* CSS Reset to override user agent styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/* Reset button styles specifically */
+button, input[type="submit"], input[type="button"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Reset anchor styles */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Reset form elements */
+input, textarea, select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+}
+
 html {
   box-sizing: border-box;
 }
@@ -82,16 +129,53 @@ button {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: teal;
-  /* float: right;
-  margin-bottom: -100px; */
+  background: linear-gradient(135deg, 
+    #004d4d 0%, 
+    #006666 25%, 
+    #1a8f8f 50%, 
+    #006666 75%, 
+    #004d4d 100%);
   border: 0;
-  padding: 15px;
+  padding: 1.5rem 1.9rem;
   color: #ffffff;
-  font-size: 14px;
-  -webkit-transition: all 0.3 ease;
-  transition: all 0.3 ease;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border-radius: 999px;
+  box-shadow: 0 4px 15px rgba(0, 128, 128, 0.3);
+}
+
+button:hover {
+  background: linear-gradient(135deg, 
+    #006666 0%, 
+    #1a8f8f 25%, 
+    #2db3b3 50%, 
+    #1a8f8f 75%, 
+    #006666 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 128, 128, 0.4);
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.2), 
+    transparent);
+  transition: left 0.5s;
+}
+
+button:hover::before {
+  left: 100%;
 }
 
 .total-count {
@@ -421,15 +505,62 @@ button {
 
 .tab-view > label {
   padding: 0 20px;
-  background: #e5e5e5;
+  background: linear-gradient(135deg, 
+    #e5e5e5 0%, 
+    #f8f9fa 25%, 
+    #ffffff 50%, 
+    #f8f9fa 75%, 
+    #e5e5e5 100%);
   font-size: 13px;
   line-height: 49px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
+
 .tab-view > label:hover {
-  background: #f2f2f2;
+  background: linear-gradient(135deg, 
+    #f8f9fa 0%, 
+    #ffffff 25%, 
+    #f0f8ff 50%, 
+    #ffffff 75%, 
+    #f8f9fa 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
+
+.tab-view > label::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(0, 0, 0, 0.05), 
+    transparent);
+  transition: left 0.5s;
+}
+
+.tab-view > label:hover::before {
+  left: 100%;
+}
+
 .tab-view > input:checked + label {
-  background: #fff;
+  background: linear-gradient(135deg, 
+    #ffffff 0%, 
+    #f0f8ff 25%, 
+    #e6f3ff 50%, 
+    #f0f8ff 75%, 
+    #ffffff 100%);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: none;
 }
 .tab-view > ul {
   background: #fff;

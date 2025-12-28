@@ -1,13 +1,15 @@
 {
-  "name": "8.3-travel-tracker",
+  "name": "travel-tracker-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "A family travel tracking application with authentication",
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": ["travel", "tracker", "family", "countries", "authentication"],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -15,7 +17,12 @@
     "dotenv": "^17.2.3",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "bcrypt": "^5.1.1",
     "nodemon": "^3.1.10",
     "pg": "^8.11.3"
+  },
+  "engines": {
+    "node": ">=14.0.0"
   }
 }

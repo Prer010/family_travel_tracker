@@ -9,16 +9,26 @@
 </head>
 
 <body>
-  <form class="tab-view tab-view-height-auto" action="/user" method="post">
-    <% users.forEach(function(user) { %>
-      <input type="submit" name="user" value="<%= user.id %>" id="<%= user.id %>">
-      <label for="<%= user.id %>" style="background-color: <%= user.color %>;">
-        <%= user.name %>
-      </label>
-      <% }); %>
+  <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem;">
+    <h1>Travel Tracker</h1>
+    <div>
+      <span>Welcome, <%= currentAccount.name %>!</span>
+      <a href="/logout" style="margin-left: 1rem; padding: 0.5rem 1rem; background-color: #dc3545; color: white; text-decoration: none; border-radius: 5px;">Logout</a>
+    </div>
+  </div>
 
-        <input type="submit" name="add" value="new" id="tab">
-        <label for="tab">Add Family Member</label>
+  <form class="tab-view tab-view-height-auto" action="/user" method="post">
+    <% if (users && users.length > 0) { %>
+      <% users.forEach(function(user) { %>
+        <input type="submit" name="user" value="<%= user.id %>" id="<%= user.id %>">
+        <label for="<%= user.id %>" style="background-color: <%= user.color %>;">
+          <%= user.name %>
+        </label>
+      <% }); %>
+    <% } %>
+
+    <input type="submit" name="add" value="new" id="tab">
+    <label for="tab">Add Family Member</label>
 
   </form>
 

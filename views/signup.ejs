@@ -1,94 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up - Travel Tracker</title>
   <link rel="stylesheet" href="./styles/main.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: gilroy, sans-serif;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100vh;
+      overflow-x: hidden;
+      overflow-y: auto;
+      background-image: url('../Motherboard-map(2).jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      position: relative;
+    }
+
+    /* Dark overlay for better text readability */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Gradient overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: linear-gradient(to top,
+          rgba(0, 0, 0, 0.7) 0%,
+          rgba(0, 0, 0, 0.5) 30%,
+          rgba(0, 0, 0, 0.3) 60%,
+          transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
     .auth-container {
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      background-color: #f8f9fa;
-    }
-    
-    .auth-form {
-      background: white;
+      position: relative;
+      z-index: 10;
       padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 400px;
     }
-    
+
+    .auth-form {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 3rem 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 450px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      margin: 2rem 0;
+    }
+
+    .auth-form::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent);
+      transition: left 0.6s;
+    }
+
+    .auth-form:hover::before {
+      left: 100%;
+    }
+
+    .auth-form:hover {
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+      transform: translateY(-5px);
+    }
+
     .auth-title {
       text-align: center;
-      margin-bottom: 2rem;
-      color: #333;
+      margin-bottom: 2.5rem;
+      color: #ffffff;
+      font-size: 2.2rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     }
-    
+
+    .auth-title i {
+      color: #1a8f8f;
+      margin-right: 0.5rem;
+      font-size: 2.5rem;
+      vertical-align: middle;
+    }
+
     .form-group {
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
-    
+
     .form-group label {
       display: block;
-      margin-bottom: 0.5rem;
-      color: #555;
-      font-weight: 500;
+      margin-bottom: 0.7rem;
+      color: #e0e0e0;
+      font-weight: 600;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
-    
+
     .form-group input {
       width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #ddd;
-      border-radius: 5px;
+      padding: 1rem 1.2rem;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
       font-size: 1rem;
       box-sizing: border-box;
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
-    
+
+    .form-group input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
     .form-group input:focus {
       outline: none;
-      border-color: #28a745;
-      box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.25);
+      border-color: #1a8f8f;
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 15px rgba(26, 143, 143, 0.4);
+      transform: translateY(-2px);
     }
-    
+
     .auth-btn {
       width: 100%;
-      padding: 0.75rem;
-      background: linear-gradient(135deg, 
-        #155724 0%, 
-        #28a745 25%, 
-        #34ce57 50%, 
-        #28a745 75%, 
-        #155724 100%);
+      padding: 1.2rem;
+      background: linear-gradient(135deg,
+          #004d4d 0%,
+          #006666 25%,
+          #1a8f8f 50%,
+          #006666 75%,
+          #004d4d 100%);
       color: white;
       border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 600;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 700;
       cursor: pointer;
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 4px 15px rgba(21, 87, 36, 0.3);
+      box-shadow: 0 6px 20px rgba(0, 128, 128, 0.4);
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 1px;
+      margin-top: 1rem;
     }
-    
+
     .auth-btn:hover {
-      background: linear-gradient(135deg, 
-        #28a745 0%, 
-        #34ce57 25%, 
-        #48d364 50%, 
-        #34ce57 75%, 
-        #28a745 100%);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(21, 87, 36, 0.4);
+      background: linear-gradient(135deg,
+          #006666 0%,
+          #1a8f8f 25%,
+          #2db3b3 50%,
+          #1a8f8f 75%,
+          #006666 100%);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 128, 128, 0.5);
     }
-    
+
     .auth-btn::before {
       content: '';
       position: absolute;
@@ -96,77 +208,168 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, 
-        transparent, 
-        rgba(255, 255, 255, 0.2), 
-        transparent);
+      background: linear-gradient(90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent);
       transition: left 0.5s;
     }
-    
+
     .auth-btn:hover::before {
       left: 100%;
     }
-    
+
+    .auth-btn:active {
+      transform: translateY(-1px);
+    }
+
     .auth-links {
       text-align: center;
-      margin-top: 1rem;
+      margin-top: 2rem;
     }
-    
+
+    .auth-links p {
+      color: #d0d0d0;
+      margin: 0.7rem 0;
+      font-size: 0.95rem;
+    }
+
     .auth-links a {
-      color: #007bff;
+      color: #2db3b3;
       text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      position: relative;
     }
-    
+
+    .auth-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #2db3b3;
+      transition: width 0.3s ease;
+    }
+
     .auth-links a:hover {
-      text-decoration: underline;
+      color: #48d9d9;
     }
-    
+
+    .auth-links a:hover::after {
+      width: 100%;
+    }
+
     .error-message {
-      background-color: #f8d7da;
-      color: #721c24;
-      padding: 0.75rem;
-      border-radius: 5px;
-      margin-bottom: 1rem;
-      border: 1px solid #f5c6cb;
+      background: rgba(220, 53, 69, 0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: #ffdddd;
+      padding: 1rem 1.2rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(220, 53, 69, 0.4);
+      font-weight: 500;
+      text-align: center;
+      animation: shake 0.5s ease;
+    }
+
+    @keyframes shake {
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(-10px);
+      }
+
+      75% {
+        transform: translateX(10px);
+      }
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .auth-form {
+        padding: 2.5rem 2rem;
+        max-width: 100%;
+      }
+
+      .auth-title {
+        font-size: 1.8rem;
+      }
+
+      .form-group input {
+        padding: 0.9rem 1rem;
+      }
+
+      .auth-btn {
+        padding: 1rem;
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .auth-container {
+        padding: 1rem;
+      }
+
+      .auth-form {
+        padding: 2rem 1.5rem;
+      }
+
+      .auth-title {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+      }
     }
   </style>
 </head>
+
 <body>
   <div class="auth-container">
     <form class="auth-form" action="/signup" method="post">
-      <h2 class="auth-title">Join Travel Tracker!</h2>
-      
+      <h2 class="auth-title"><i class="ri-user-add-line"></i>Join Travel Tracker!</h2>
+
       <% if (locals.error) { %>
-        <div class="error-message"><%= error %></div>
-      <% } %>
-      
-      <div class="form-group">
-        <label for="name">Full Name:</label>
-        <input type="text" id="name" name="name" required>
-      </div>
-      
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-      </div>
-      
-      <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required minlength="6">
-      </div>
-      
-      <div class="form-group">
-        <label for="confirmPassword">Confirm Password:</label>
-        <input type="password" id="confirmPassword" name="confirmPassword" required minlength="6">
-      </div>
-      
-      <button type="submit" class="auth-btn">Sign Up</button>
-      
-      <div class="auth-links">
-        <p>Already have an account? <a href="/login">Login here</a></p>
-        <p><a href="/">Back to Home</a></p>
-      </div>
+        <div class="error-message">
+          <%= error %>
+        </div>
+        <% } %>
+
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required
+              minlength="6">
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password"
+              required minlength="6">
+          </div>
+
+          <button type="submit" class="auth-btn">Sign Up</button>
+
+          <div class="auth-links">
+            <p>Already have an account? <a href="/login">Login</a></p>
+            <p><a href="/">Back to Home</a></p>
+          </div>
     </form>
   </div>
 </body>
+
 </html>

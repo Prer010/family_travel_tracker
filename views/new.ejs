@@ -4,57 +4,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New User</title>
+  <title>Add Family Member</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.8.0/fonts/remixicon.css" rel="stylesheet" />
   <link rel="stylesheet" href="./styles/main.css">
   <link rel="stylesheet" href="./styles/new.css">
 </head>
 
 <body>
-  <h1>Add a Family Member</h1>
-  
-  <% if (locals.error) { %>
-    <div style="background-color: #f8d7da; color: #721c24; padding: 0.75rem; border-radius: 5px; margin-bottom: 1rem; border: 1px solid #f5c6cb;">
-      <%= error %>
-    </div>
-  <% } %>
-  
-  <form action="/new" method="post">
-    <p>What's your name?</p>
-    <input type="text" name="name">
+  <!-- Back Button -->
+  <a href="/dashboard" class="back-button" title="Back to Dashboard">
+    <i class="ri-arrow-left-line"></i>
+  </a>
 
-    <p>Pick a color:</p>
-    <input type="radio" name="color" id="red" value="red" />
-    <label for="red"><span class="red"></span></label>
+  <!-- Card Container -->
+  <div class="card-container">
+    <h1>Add a Family Member</h1>
 
-    <input type="radio" name="color" id="green" value="green" />
-    <label for="green"><span class="green"></span></label>
+    <% if (locals.error) { %>
+      <div class="error-message">
+        <%= error %>
+      </div>
+      <% } %>
 
-    <input type="radio" name="color" id="yellow" value="yellow" />
-    <label for="yellow"><span class="yellow"></span></label>
+        <form action="/new" method="post">
+          <p>Name</p>
+          <input type="text" name="name" placeholder="Enter family member name" required>
 
-    <input type="radio" name="color" id="olive" value="olive" />
-    <label for="olive"><span class="olive"></span></label>
+          <p>Pick a color:</p>
+          <div class="color-picker">
+            <input type="radio" name="color" id="red" value="red" required />
+            <label for="red"><span class="radio red"></span></label>
 
-    <input type="radio" name="color" id="orange" value="orange" />
-    <label for="orange"><span class="orange"></span></label>
+            <input type="radio" name="color" id="orange" value="orange" />
+            <label for="orange"><span class="radio orange"></span></label>
 
-    <input type="radio" name="color" id="teal" value="indigo" />
-    <label for="teal"><span class="teal"></span></label>
+            <input type="radio" name="color" id="yellow" value="yellow" />
+            <label for="yellow"><span class="radio yellow"></span></label>
 
-    <input type="radio" name="color" id="blue" value="blue" />
-    <label for="blue"><span class="blue"></span></label>
+            <input type="radio" name="color" id="olive" value="olive" />
+            <label for="olive"><span class="radio olive"></span></label>
 
-    <input type="radio" name="color" id="violet" value="violet" />
-    <label for="violet"><span class="violet"></span></label>
+            <input type="radio" name="color" id="green" value="green" />
+            <label for="green"><span class="radio green"></span></label>
 
-    <input type="radio" name="color" id="purple" value="purple" />
-    <label for="purple"><span class="purple"></span></label>
+            <input type="radio" name="color" id="teal" value="teal" />
+            <label for="teal"><span class="radio teal"></span></label>
 
-    <input type="radio" name="color" id="pink" value="pink" />
-    <label for="pink"><span class="pink"></span></label>
-    <div class="spacer"></div>
-    <button type="submit">Add</button>
-  </form>
+            <input type="radio" name="color" id="blue" value="blue" />
+            <label for="blue"><span class="radio blue"></span></label>
+
+            <input type="radio" name="color" id="violet" value="violet" />
+            <label for="violet"><span class="radio violet"></span></label>
+
+            <input type="radio" name="color" id="purple" value="purple" />
+            <label for="purple"><span class="radio purple"></span></label>
+
+            <input type="radio" name="color" id="pink" value="pink" />
+            <label for="pink"><span class="radio pink"></span></label>
+          </div>
+
+          <button type="submit" class="submit-button">Add Family Member</button>
+        </form>
+  </div>
 </body>
 
 </html>

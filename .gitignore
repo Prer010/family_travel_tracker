@@ -1,5 +1,9 @@
 DEPLOYMENT.md
 
+# Markdown files (except README)
+*.md
+!README.md
+
 # Logs
 logs
 *.log

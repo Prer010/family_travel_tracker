@@ -505,12 +505,6 @@ button:hover::before {
 
 .tab-view > label {
   padding: 0 20px;
-  background: linear-gradient(135deg, 
-    #e5e5e5 0%, 
-    #f8f9fa 25%, 
-    #ffffff 50%, 
-    #f8f9fa 75%, 
-    #e5e5e5 100%);
   font-size: 13px;
   line-height: 49px;
   font-weight: 600;
@@ -523,7 +517,17 @@ button:hover::before {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.tab-view > label:hover {
+/* Add Family Member button specific styling */
+.tab-view > label[for="tab"] {
+  background: linear-gradient(135deg, 
+    #e5e5e5 0%, 
+    #f8f9fa 25%, 
+    #ffffff 50%, 
+    #f8f9fa 75%, 
+    #e5e5e5 100%);
+}
+
+.tab-view > label[for="tab"]:hover {
   background: linear-gradient(135deg, 
     #f8f9fa 0%, 
     #ffffff 25%, 
@@ -578,4 +582,266 @@ button:hover::before {
   .tab-view-theme-5 > input:checked + label:after {
     display: none;
   }
+}
+/* Family Member Color Classes */
+.tab-view > label.color-red { background-color: #db2828 !important; }
+.tab-view > label.color-orange { background-color: #f2711c !important; }
+.tab-view > label.color-yellow { background-color: #fbbd08 !important; }
+.tab-view > label.color-olive { background-color: #b5cc18 !important; }
+.tab-view > label.color-green { background-color: #21ba45 !important; }
+.tab-view > label.color-teal { background-color: #00b5ad !important; }
+.tab-view > label.color-blue { background-color: #2185d0 !important; }
+.tab-view > label.color-violet { background-color: #6435c9 !important; }
+.tab-view > label.color-purple { background-color: #a333c8 !important; }
+.tab-view > label.color-pink { background-color: #e03997 !important; }
+/* Context Menu Styles */
+.context-menu {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  min-width: 120px;
+  overflow: hidden;
+}
+
+.context-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.context-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.context-item i {
+  margin-right: 8px;
+  font-size: 18px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 24px 16px 24px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: #333;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #404040;
+  transition: color 0.2s ease;
+  padding: 8px;
+  border-radius: 6px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+  color: #333;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.modal-body {
+  padding: 24px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.countries-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.country-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.country-item:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.country-name {
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+}
+
+.delete-country-btn {
+  background: none;
+  border: none;
+  color: #dc3545;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-country-btn:hover {
+  background: rgba(220, 53, 69, 0.1);
+  transform: scale(1.1);
+}
+
+.modal-footer {
+  padding: 16px 24px 24px 24px;
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.modal-save-btn {
+  background: linear-gradient(135deg, #004d4d 0%, #006666 25%, #1a8f8f 50%, #006666 75%, #004d4d 100%);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: medium;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.modal-save-btn:hover {
+  background: linear-gradient(135deg, #006666 0%, #1a8f8f 25%, #2db3b3 50%, #1a8f8f 75%, #006666 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 128, 128, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    margin: 20px;
+  }
+  
+  .modal-header, .modal-body, .modal-footer {
+    padding: 16px;
+  }
+  
+  .context-menu {
+    min-width: 100px;
+  }
+  
+  .context-item {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+}
+
+/* Autocomplete Dropdown Styles */
+.autocomplete-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  margin-top: 4px;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.autocomplete-item {
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.autocomplete-item:last-child {
+  border-bottom: none;
+}
+
+.autocomplete-item:hover,
+.autocomplete-item.active {
+  background-color: rgba(0, 128, 128, 0.1);
+}
+
+.autocomplete-no-results {
+  padding: 12px 16px;
+  color: #888;
+  font-size: 14px;
+  text-align: center;
 }

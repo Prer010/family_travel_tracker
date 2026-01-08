@@ -1,76 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Travel Tracker</title>
   <link rel="stylesheet" href="./styles/main.css">
-    <link rel="stylesheet" href="./styles/landing.css">
-<link
-    href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
-    rel="stylesheet"
-/>
+  <link rel="stylesheet" href="./styles/landing.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
 </head>
 
 <body>
-  
+
   <nav>
-<div class="auth-buttons">
+    <div class="auth-buttons">
       <a href="/login" class="auth-btn login-btn">Login</a>
       <a href="/signup" class="auth-btn signup-btn">Sign Up</a>
     </div>
   </nav>
 
   <div class="landing-container">
-   <div class="px-4 py-5 my-5 text-center">
-      <h1 class="display-5 fw-bold text-body-emphasis">🌏 Travel Tracker</h1> 
+    <div class="px-4 py-5 my-5 text-center">
+      <h1 class="display-5 fw-bold text-body-emphasis">🌏 Travel Tracker</h1>
       <div class="col-lg-6 mx-auto">
-         <p class="lead mb-4">Where every family trip leaves a mark on the map. Track your and your family's journeys, one country at a time.</p> 
-         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-           <button type="button" class="btn btn-primary btn-lg px-4 gap-3" fdprocessedid="8ak5wj">Get Started <i class="ri-arrow-right-s-line"></i></button>
-   </div>
-   </div> 
-  </div>
-  </div>
-    
-    <div class="container" id="features">
-      
-      <h2 class="pb-2 border-bottom">Features</h2>
-
-      <div class="separator">
-        <svg viewBox="0 0 100 10" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-          <path d="M50 5 H 50" stroke="white" stroke-width="0.5" class="path1" />
-          <path d="M50 5 H 50" stroke="white" stroke-width="0.5" class="path2" />
-        </svg>
-      </div>
-
-      <div class="card-container">
-        <div class="card">
-          <div class="card-title">
-          <i class="ri-team-fill"></i><h3>Member-Wise Travel Tracking</h3></div>
-          <p>Track visited countries separately for each family member.</p>
-        </div>
-        <div class="card">
-          <div class="card-title"><i class="ri-pushpin-fill"></i><h3>Visual Country Highlights</h3></div>
-          
-          <p>Visually highlight countries visited by your family on a global map.</p>
-        </div>
-        <div class="card">
-          <div class="card-title"><i class="ri-bookmark-fill"></i><h3>Persistent Travel History</h3></div>
-          
-          <p>Travel data stays saved and accessible anytime with database support.</p>
+        <p class="lead mb-4">Where every family trip leaves a mark on the map. Track your and your family's journeys,
+          one country at a time.</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+          <button type="button" class="btn btn-primary btn-lg px-4 gap-3" onclick="window.location.href='/signup'">Get
+            Started <i class="ri-arrow-right-s-line"></i></button>
         </div>
       </div>
+    </div>
+  </div>
 
-</div>
+  <div class="container" id="features">
 
-<footer>
-  <a href="https://github.com/Prer010/family_travel_tracker"><i class="ri-github-fill"></i></a>
-<p>©copyright 2026</p>
-</footer>
+    <h2 class="pb-2 border-bottom">Features</h2>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" integrity="sha512-P2IDYZfqSwjcSjX0BKeNhwRUH8zRPGlgcWl5n6gBLzdi4Y5/0O4zaXrtO4K9TZK6Hn1BenYpKowuCavNandERg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="./landing.js"></script>
+    <div class="separator">
+      <svg viewBox="0 0 100 10" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M50 5 H 50" stroke="white" stroke-width="0.5" class="path1" />
+        <path d="M50 5 H 50" stroke="white" stroke-width="0.5" class="path2" />
+      </svg>
+    </div>
+
+    <div class="card-container">
+      <div class="card">
+        <div class="card-title">
+          <i class="ri-team-fill"></i>
+          <h3>Member-Wise Travel Tracking</h3>
+        </div>
+        <p>Track visited countries separately for each family member.</p>
+      </div>
+      <div class="card">
+        <div class="card-title"><i class="ri-pushpin-fill"></i>
+          <h3>Visual Country Highlights</h3>
+        </div>
+
+        <p>Visually highlight countries visited by your family on a global map.</p>
+      </div>
+      <div class="card">
+        <div class="card-title"><i class="ri-bookmark-fill"></i>
+          <h3>Persistent Travel History</h3>
+        </div>
+
+        <p>Travel data stays saved and accessible anytime with database support.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <a href="https://github.com/Prer010/family_travel_tracker"><i class="ri-github-fill"></i></a>
+    <p>©copyright 2026</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
+    integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"
+    integrity="sha512-P2IDYZfqSwjcSjX0BKeNhwRUH8zRPGlgcWl5n6gBLzdi4Y5/0O4zaXrtO4K9TZK6Hn1BenYpKowuCavNandERg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="./scripts/landing.js"></script>
 </body>
+
 </html>

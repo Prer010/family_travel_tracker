@@ -67,6 +67,21 @@
           <button type="submit" class="submit-button">Add Family Member</button>
         </form>
   </div>
+
+  <!-- GSAP Library for animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
+    integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- Card Container Animation -->
+  <script>
+    gsap.from('.card-container', {
+      y: 30,
+      opacity: 0,
+      duration: 1.0,
+      ease: 'power3.out'
+    });
+  </script>
 </body>
 
 </html>

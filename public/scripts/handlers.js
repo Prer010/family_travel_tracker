@@ -205,6 +205,14 @@ function hideContextMenu() {
  */
 function openEditModal() {
     hideContextMenu();
+
+    // Close hamburger menu if open (mobile/tablet)
+    const hamburgerMenu = document.getElementById('hamburgerMenu');
+    if (hamburgerMenu && hamburgerMenu.classList.contains('active')) {
+        hamburgerMenu.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
     document.getElementById('modalTitle').textContent = `Edit ${currentUserName}`;
 
     // Fetch user's visited countries
@@ -319,6 +327,14 @@ function saveChanges() {
  */
 function openRenameModal() {
     hideContextMenu();
+
+    // Close hamburger menu if open (mobile/tablet)
+    const hamburgerMenu = document.getElementById('hamburgerMenu');
+    if (hamburgerMenu && hamburgerMenu.classList.contains('active')) {
+        hamburgerMenu.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
     const newNameInput = document.getElementById('newName');
     newNameInput.value = currentUserName; // Pre-fill with current name
     const modal = document.getElementById('renameModal');
@@ -418,7 +434,20 @@ function setupModalListeners() {
 function deleteFamilyMember() {
     hideContextMenu();
 
-    if (confirm(`Are you sure you want to delete ${currentUserName}? This will also delete all their visited countries.`)) {
+    // Close hamburger menu if open (mobile/tablet)
+    const hamburgerMenu = document.getElementById('hamburgerMenu');
+    if (hamburgerMenu && hamburgerMenu.classList.contains('active')) {
+        hamburgerMenu.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // Check if mobile/tablet (max-width: 768px)
+    const isMobileOrTablet = window.innerWidth <= 768;
+
+    // Skip confirmation on mobile/tablet
+    const shouldDelete = isMobileOrTablet || confirm(`Are you sure you want to delete ${currentUserName}? This will also delete all their visited countries.`);
+
+    if (shouldDelete) {
         fetch(`/api/user/${currentUserId}`, {
             method: 'DELETE'
         })

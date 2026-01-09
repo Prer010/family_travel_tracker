@@ -11,27 +11,84 @@
 </head>
 
 <body>
-  <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; color: #ddd; ">
-    <h1>Family Travel Tracker</h1>
-    <div style="display: flex; align-items: center; gap: 0.70rem;">
+  <!-- Header -->
+  <div class="header-container">
+    <h1 class="header-title">Family Travel Tracker</h1>
 
-      <a href="/logout"
-        style="padding: 0.5rem 1rem; background-color: #dc3545; color: white; text-decoration: none; border-radius: 5px; transition: all 0.3s ease; position: relative; overflow: hidden;"
-        onmouseover="this.style.backgroundColor='#c82333'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(220, 53, 69, 0.4)'"
-        onmouseout="this.style.backgroundColor='#dc3545'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">Logout</a>
-
-      <a href="#" onclick="deleteAccount(); return false;"
-        style="padding: 0.5rem 1rem; background-color: transparent; color: #ddd; text-decoration: none; border-radius: 5px; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 0.5rem; border: none;"
-        onmouseover="this.style.backgroundColor='rgba(128, 128, 128, 0.2)'; this.style.color='#dc3545';"
-        onmouseout="this.style.backgroundColor='transparent'; this.style.color='#ddd';">
+    <!-- Desktop Navigation -->
+    <div class="desktop-nav">
+      <a href="/logout" class="logout-btn">Logout</a>
+      <a href="#" onclick="deleteAccount(); return false;" class="delete-account-btn">
         <i class="ri-delete-bin-line"></i>
         Delete Account
       </a>
     </div>
+
+    <!-- Hamburger Menu Button (Mobile Only) -->
+    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
+      <i class="ri-menu-line"></i>
+    </button>
   </div>
 
-  <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 1.5rem;">
-    <form class="tab-view tab-view-height-auto" action="/user" method="post">
+  <!-- Mobile Hamburger Menu -->
+  <div class="hamburger-menu" id="hamburgerMenu">
+    <div class="hamburger-menu-content">
+      <div class="hamburger-header">
+        <h2>Menu</h2>
+        <button class="hamburger-close" id="hamburgerClose" aria-label="Close menu">
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+
+      <div class="hamburger-body">
+        <!-- Family Members Section -->
+        <div class="hamburger-section">
+          <h3>Family Members</h3>
+          <form class="tab-view tab-view-height-auto hamburger-tabs" action="/user" method="post">
+            <% if (users && users.length> 0) { %>
+              <% users.forEach(function(user) { %>
+                <input type="submit" name="user" value="<%= user.id %>" id="mobile-<%= user.id %>">
+                <label for="mobile-<%= user.id %>" class="color-<%= user.color %> hamburger-member-label"
+                  data-user-id="<%= user.id %>" data-user-name="<%= user.name %>" data-user-color="<%= user.color %>">
+                  <span class="member-name">
+                    <%= user.name %>
+                  </span>
+                  <button type="button" class="hamburger-menu-dots"
+                    onclick="event.preventDefault(); event.stopPropagation(); showContextMenu(event, '<%= user.id %>', '<%= user.name %>', '<%= user.color %>'); return false;"
+                    aria-label="Options">
+                    <i class="ri-more-2-fill"></i>
+                  </button>
+                </label>
+                <% }); %>
+                  <% } %>
+                    <input type="submit" name="add" value="new" id="mobile-tab">
+                    <label for="mobile-tab" class="add-member-label">
+                      <i class="ri-add-line"></i>
+                      Add Family Member
+                    </label>
+          </form>
+        </div>
+
+        <!-- Account Actions Section -->
+        <div class="hamburger-section">
+          <h3>Account</h3>
+          <a href="/logout" class="hamburger-link logout-link">
+            <i class="ri-logout-box-line"></i>
+            Logout
+          </a>
+          <a href="#" onclick="deleteAccount(); return false;" class="hamburger-link delete-link">
+            <i class="ri-delete-bin-line"></i>
+            Delete Account
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Bar Section -->
+  <div class="search-container">
+    <!-- Desktop Family Member Tabs -->
+    <form class="tab-view tab-view-height-auto desktop-tabs" action="/user" method="post">
       <% if (users && users.length> 0) { %>
         <% users.forEach(function(user) { %>
           <input type="submit" name="user" value="<%= user.id %>" id="<%= user.id %>">
@@ -41,21 +98,21 @@
           </label>
           <% }); %>
             <% } %>
-
               <input type="submit" name="add" value="new" id="tab">
-              <label for="tab">Add Family Member</label>
-
+              <label for="tab">
+                <i class="ri-add-line"></i>
+                Add Family Member
+              </label>
     </form>
 
-    <form action="/add" method="post" style="display: flex; align-items: center; gap: 15px;">
-      <div style="position: relative; flex: 1;">
+    <!-- Search Form -->
+    <form action="/add" method="post" class="search-form">
+      <div class="search-input-wrapper">
         <input type="text" name="country" id="countryInput" autocomplete="off" autofocus
-          placeholder="<%= locals.error ? error :  'Enter country name'%>"
-          style="border-radius: 10px; margin: 0; width: 100%;">
+          placeholder="<%= locals.error ? error :  'Enter country name'%>" class="search-input">
         <div id="autocompleteDropdown" class="autocomplete-dropdown" style="display: none;"></div>
       </div>
-      <button type="submit" class="modal-save-btn"
-        style="padding: 0.6rem 1.3rem; font-size: medium; display: flex; align-items: center; justify-content: center;">Add</button>
+      <button type="submit" class="search-btn">Add</button>
     </form>
   </div>
 
@@ -498,6 +555,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <!-- External JavaScript files -->
+  <script src="./scripts/hamburger.js"></script>
   <script src="./scripts/animations.js"></script>
   <script src="./scripts/handlers.js"></script>
 </body>

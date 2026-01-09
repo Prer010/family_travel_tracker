@@ -1,36 +1,51 @@
 # 🌍 Family Travel Tracker
 
-A simple full-stack web application that helps track the countries visited by each family member.  
-Each member’s travel history is stored in a PostgreSQL database and visually highlighted on a world map.
+A simple full-stack web application that helps track the countries visited by each family member. Each member’s travel history is stored in a PostgreSQL database and visually highlighted on a world map. This project focuses on implementing **basic PostgreSQL CRUD operations** and connecting the backend with a dynamic frontend.
 
-This project focuses on implementing **basic PostgreSQL CRUD operations** and connecting the backend with a dynamic frontend.
+This project demonstrates **real-world backend architecture**, PostgreSQL integration, authentication, and production deployment using Supabase and Vercel.
+
+---
+
+## 🚀 Live Demo
+> _(Add your deployed Vercel URL here once live)_
 
 ---
 
 ## ✨ Features
 
-- Add multiple family members
-- Select and store countries visited by each member
+- Add/Remove multiple family members
+- Search, select and store countries visited by each member
 - Highlight visited countries on a world map
-- View travel data separately for each family member
+- View and edit travel data separately for each family member
+- Secure session handling
+
+## 🧠 Project Overview
+
 - Applied basic **Create, Read, Update, Delete (CRUD)** operations using PostgreSQL
+- Google OAuth authentication
+- Database hosted on Supabase
+- APIs deployed on Vercel
 
 ---
 
 ## 🛠️ Tech Stack
 
-**Frontend**
+### Frontend
 - HTML
 - CSS
 - JavaScript
+- EJS (templating)
 
-**Backend**
+### Backend
 - Node.js
 - Express.js
 
-**Templating Engine**
-- EJS
+### Database
+- PostgreSQL (Supabase)
 
-**Database**
-- PostgreSQL
+### Deployment
+- Backend: Vercel
+- Database: Supabase
+- Version Control: Git + GitHub
 
+---

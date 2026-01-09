@@ -14,14 +14,17 @@ env.config();
 const app = express();
 const port = process.env.SERVER_PORT || 8080;
 
+// Database connection for Supabase
 const db = new pg.Client({
-  user: process.env.USER,
-  host: process.env.HOST,
-  database: process.env.DATABASE,
-  password: process.env.PASSWORD,
-  port: process.env.PORT,
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false // Required for Supabase
+  }
 });
-db.connect();
+
+db.connect()
+  .then(() => console.log('Connected to Supabase PostgreSQL'))
+  .catch(err => console.error('Database connection error:', err));
 
 app.use(bodyParser.json()); // Parse JSON request bodies
 app.use(bodyParser.urlencoded({ extended: true }));

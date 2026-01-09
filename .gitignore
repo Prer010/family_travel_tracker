@@ -3,6 +3,7 @@ DEPLOYMENT.md
 # Markdown files (except README)
 *.md
 !README.md
+*.sql
 
 # Logs
 logs

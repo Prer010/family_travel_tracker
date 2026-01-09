@@ -1,10 +1,6 @@
 DEPLOYMENT.md
 /queries.sql
 
-# Package files
-package.json
-package-lock.json
-
 # Config directory
 config/
 

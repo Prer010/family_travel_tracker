@@ -1,9 +1,16 @@
 DEPLOYMENT.md
+/queries.sql
+
+# Package files
+package.json
+package-lock.json
+
+# Config directory
+config/
 
 # Markdown files (except README)
 *.md
 !README.md
-*.sql
 
 # Logs
 logs

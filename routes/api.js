@@ -170,7 +170,6 @@ router.delete("/account", requireAuth, async (req, res) => {
     const accountId = req.session.accountId;
 
     try {
-        // First, get all users for this account
         const usersResult = await req.db.query("SELECT id FROM users WHERE account_id = $1", [accountId]);
         const userIds = usersResult.rows.map(row => row.id);
 
@@ -183,7 +182,6 @@ router.delete("/account", requireAuth, async (req, res) => {
         // Delete all users for this account
         await req.db.query("DELETE FROM users WHERE account_id = $1", [accountId]);
 
-        // Finally, delete the account itself
         await req.db.query("DELETE FROM accounts WHERE id = $1", [accountId]);
 
         // Destroy the session

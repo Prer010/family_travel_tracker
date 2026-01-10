@@ -34,10 +34,8 @@ async function getCurrentAccount(accountId, db) {
 // Landing page
 router.get("/", async (req, res) => {
     if (req.session.accountId) {
-        // User is logged in, redirect to dashboard
         res.redirect('/dashboard');
     } else {
-        // Show landing page
         res.render("landing.ejs");
     }
 });
@@ -53,7 +51,6 @@ router.get("/dashboard", requireAuth, async (req, res) => {
         let currentUser = null;
 
         if (users.length > 0) {
-            // If there's a current user ID in session, use it, otherwise use the first user
             const selectedUserId = req.session.currentUserId || users[0].id;
             req.session.currentUserId = selectedUserId;
 

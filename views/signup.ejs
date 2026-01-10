@@ -427,11 +427,9 @@
   <script>
     // GSAP Animation
     document.addEventListener('DOMContentLoaded', function () {
-      // Set initial state
       gsap.set(".auth-form", { y: 100, opacity: 0 });
       gsap.set(".auth-form > *", { opacity: 0 });
 
-      // Animate form container
       gsap.to(".auth-form", {
         y: 0,
         opacity: 1,

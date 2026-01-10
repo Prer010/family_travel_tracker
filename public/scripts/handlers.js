@@ -30,33 +30,25 @@ document.addEventListener('DOMContentLoaded', function () {
     checkForErrors();
 });
 
-/**
- * Check for error message in URL and display appropriately
- * Mobile/Tablet: Show in search input placeholder
- * Desktop: Show as alert
- */
+
 function checkForErrors() {
     const urlParams = new URLSearchParams(window.location.search);
     const errorMessage = urlParams.get('error');
     if (errorMessage) {
-        // Check if mobile/tablet (max-width: 768px)
         const isMobileOrTablet = window.innerWidth <= 768;
 
         if (isMobileOrTablet) {
-            // Display error in search input placeholder
             const searchInput = document.getElementById('countryInput');
             if (searchInput) {
                 searchInput.placeholder = errorMessage;
                 searchInput.classList.add('error');
 
-                // Reset placeholder after 5 seconds
                 setTimeout(() => {
                     searchInput.placeholder = 'Enter country name';
                     searchInput.classList.remove('error');
                 }, 5000);
             }
         } else {
-            // Desktop: show alert as usual
             alert(errorMessage);
         }
 
@@ -68,9 +60,6 @@ function checkForErrors() {
 
 // ============ AUTOCOMPLETE FUNCTIONS ============
 
-/**
- * Setup autocomplete event listeners
- */
 function setupAutocomplete() {
     if (!countryInput || !autocompleteDropdown) return;
 
@@ -84,7 +73,6 @@ function setupAutocomplete() {
             return;
         }
 
-        // Debounce the search
         autocompleteTimeout = setTimeout(() => {
             searchCountries(query);
         }, 300);
@@ -109,7 +97,6 @@ function setupAutocomplete() {
         }
     });
 
-    // Hide autocomplete when clicking outside
     document.addEventListener('click', function (e) {
         if (!countryInput.contains(e.target) && !autocompleteDropdown.contains(e.target)) {
             hideAutocomplete();
@@ -159,9 +146,6 @@ function displayAutocomplete(countries) {
     autocompleteDropdown.style.display = 'block';
 }
 
-/**
- * Update selected item in autocomplete
- */
 function updateSelection(items) {
     items.forEach((item, index) => {
         if (index === selectedIndex) {
@@ -173,9 +157,6 @@ function updateSelection(items) {
     });
 }
 
-/**
- * Hide autocomplete dropdown
- */
 function hideAutocomplete() {
     autocompleteDropdown.style.display = 'none';
     autocompleteDropdown.innerHTML = '';
@@ -184,11 +165,7 @@ function hideAutocomplete() {
 
 // ============ CONTEXT MENU FUNCTIONS ============
 
-/**
- * Setup context menu listeners
- */
 function setupContextMenuListeners() {
-    // Hide context menu when clicking elsewhere
     document.addEventListener('click', hideContextMenu);
 
     document.addEventListener('contextmenu', function (e) {
@@ -198,9 +175,6 @@ function setupContextMenuListeners() {
     });
 }
 
-/**
- * Show context menu
- */
 function showContextMenu(event, userId, userName, userColor) {
     event.preventDefault();
     currentUserId = userId;
@@ -213,18 +187,12 @@ function showContextMenu(event, userId, userName, userColor) {
     contextMenu.style.top = event.pageY + 'px';
 }
 
-/**
- * Hide context menu
- */
 function hideContextMenu() {
     document.getElementById('contextMenu').style.display = 'none';
 }
 
 // ============ EDIT MODAL FUNCTIONS ============
 
-/**
- * Open edit modal
- */
 function openEditModal() {
     hideContextMenu();
 
@@ -245,7 +213,6 @@ function openEditModal() {
             const modal = document.getElementById('editModal');
             modal.style.display = 'flex';
 
-            // Animate modal
             animateEditModal();
         })
         .catch(error => {
@@ -254,17 +221,12 @@ function openEditModal() {
         });
 }
 
-/**
- * Close edit modal
- */
 function closeEditModal() {
     document.getElementById('editModal').style.display = 'none';
     deletedCountries = []; // Reset deleted countries when closing
 }
 
-/**
- * Populate countries list in modal
- */
+
 function populateCountriesList(countries) {
     const countriesList = document.getElementById('countriesList');
     countriesList.innerHTML = '';
@@ -288,14 +250,9 @@ function populateCountriesList(countries) {
     });
 }
 
-/**
- * Remove country from list
- */
 function removeCountry(countryCode, button) {
-    // Add to deletion list (stage for deletion)
     deletedCountries.push(countryCode);
 
-    // Remove from UI immediately for visual feedback
     button.parentElement.remove();
 
     // Show empty message if no countries left
@@ -305,13 +262,9 @@ function removeCountry(countryCode, button) {
     }
 }
 
-/**
- * Save changes to countries
- */
 function saveChanges() {
     // Send DELETE requests for all staged countries when Save is clicked
     if (deletedCountries.length === 0) {
-        // No countries to delete, just close modal and refresh
         closeEditModal();
         location.reload();
         return;
@@ -331,7 +284,7 @@ function saveChanges() {
         .then(data => {
             if (data.success) {
                 closeEditModal();
-                location.reload(); // Refresh to update the map
+                location.reload();
             } else {
                 alert('Error saving changes');
             }
@@ -344,13 +297,9 @@ function saveChanges() {
 
 // ============ RENAME MODAL FUNCTIONS ============
 
-/**
- * Open rename modal
- */
 function openRenameModal() {
     hideContextMenu();
 
-    // Close hamburger menu if open (mobile/tablet)
     const hamburgerMenu = document.getElementById('hamburgerMenu');
     if (hamburgerMenu && hamburgerMenu.classList.contains('active')) {
         hamburgerMenu.classList.remove('active');
@@ -358,31 +307,23 @@ function openRenameModal() {
     }
 
     const newNameInput = document.getElementById('newName');
-    newNameInput.value = currentUserName; // Pre-fill with current name
+    newNameInput.value = currentUserName;
     const modal = document.getElementById('renameModal');
     modal.style.display = 'flex';
 
-    // Animate modal
     animateRenameModal();
 
-    // Focus on input after a small delay to ensure modal is visible
     setTimeout(() => {
         newNameInput.focus();
         newNameInput.select();
     }, 100);
 }
 
-/**
- * Close rename modal
- */
 function closeRenameModal() {
     document.getElementById('renameModal').style.display = 'none';
     document.getElementById('newName').value = '';
 }
 
-/**
- * Save renamed family member
- */
 function saveRename() {
     const newName = document.getElementById('newName').value.trim();
 
@@ -410,7 +351,7 @@ function saveRename() {
         .then(data => {
             if (data.success) {
                 closeRenameModal();
-                location.reload(); // Refresh to update the UI
+                location.reload();
             } else {
                 alert(data.message || 'Error renaming family member');
             }
@@ -423,11 +364,7 @@ function saveRename() {
 
 // ============ MODAL SETUP ============
 
-/**
- * Setup modal event listeners
- */
 function setupModalListeners() {
-    // Close edit modal when clicking outside
     const editModal = document.getElementById('editModal');
     if (editModal) {
         editModal.addEventListener('click', function (e) {
@@ -437,7 +374,6 @@ function setupModalListeners() {
         });
     }
 
-    // Close rename modal when clicking outside
     const renameModal = document.getElementById('renameModal');
     if (renameModal) {
         renameModal.addEventListener('click', function (e) {
@@ -450,9 +386,6 @@ function setupModalListeners() {
 
 // ============ FAMILY MEMBER FUNCTIONS ============
 
-/**
- * Delete family member
- */
 function deleteFamilyMember() {
     hideContextMenu();
 
@@ -463,10 +396,8 @@ function deleteFamilyMember() {
         document.body.style.overflow = '';
     }
 
-    // Check if mobile/tablet (max-width: 768px)
     const isMobileOrTablet = window.innerWidth <= 768;
 
-    // Skip confirmation on mobile/tablet
     const shouldDelete = isMobileOrTablet || confirm(`Are you sure you want to delete ${currentUserName}? This will also delete all their visited countries.`);
 
     if (shouldDelete) {
@@ -490,9 +421,6 @@ function deleteFamilyMember() {
 
 // ============ ACCOUNT FUNCTIONS ============
 
-/**
- * Delete account
- */
 function deleteAccount() {
     const confirmMessage = 'Are you sure you want to delete your account? This will permanently delete:\\n\\n• Your account\\n• All family members\\n• All visited countries data\\n\\nThis action cannot be undone!';
 

@@ -31,13 +31,35 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 /**
- * Check for error message in URL and show alert
+ * Check for error message in URL and display appropriately
+ * Mobile/Tablet: Show in search input placeholder
+ * Desktop: Show as alert
  */
 function checkForErrors() {
     const urlParams = new URLSearchParams(window.location.search);
     const errorMessage = urlParams.get('error');
     if (errorMessage) {
-        alert(errorMessage);
+        // Check if mobile/tablet (max-width: 768px)
+        const isMobileOrTablet = window.innerWidth <= 768;
+
+        if (isMobileOrTablet) {
+            // Display error in search input placeholder
+            const searchInput = document.getElementById('countryInput');
+            if (searchInput) {
+                searchInput.placeholder = errorMessage;
+                searchInput.classList.add('error');
+
+                // Reset placeholder after 5 seconds
+                setTimeout(() => {
+                    searchInput.placeholder = 'Enter country name';
+                    searchInput.classList.remove('error');
+                }, 5000);
+            }
+        } else {
+            // Desktop: show alert as usual
+            alert(errorMessage);
+        }
+
         // Remove error parameter from URL without reloading
         const newUrl = window.location.pathname;
         window.history.replaceState({}, document.title, newUrl);

@@ -965,7 +965,7 @@ button:hover::before {
 }
 
 .header-title {
-  font-size: 1.7rem;
+  font-size: 1.8rem;
   margin: 0;
   color: #ddd;
 }
@@ -1304,37 +1304,38 @@ button:hover::before {
   box-shadow: 0 6px 20px rgba(0, 128, 128, 0.4);
 }
 
-/* ========================================
-   MOBILE RESPONSIVE STYLES
-   ======================================== */
+@media (min-width: 1025px) {
+  .header-title {
+    font-size: 2rem;
+  }
+
+  .search-form {
+    max-width: 350px;
+  }
+}
 
 @media (max-width: 768px) {
 
-  /* Show hamburger button on mobile */
   .hamburger-btn {
     display: block;
   }
 
-  /* Hide desktop navigation on mobile */
   .desktop-nav {
     display: none;
   }
 
-  /* Hide desktop tabs on mobile */
   .desktop-tabs {
     display: none;
   }
 
-  /* Adjust header for mobile */
   .header-container {
     padding: 1rem;
   }
 
   .header-title {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
   }
 
-  /* Search container adjustments */
   .search-container {
     padding: 0.5rem 1rem;
     flex-direction: column;
@@ -1352,13 +1353,11 @@ button:hover::before {
     font-size: 0.9rem;
   }
 
-  /* Adjust map canvas for mobile */
   .ag-canvas {
     margin-top: 0;
     padding: 1rem 0.5rem;
   }
 
-  /* Hamburger menu adjustments */
   .hamburger-menu-content {
     width: 90%;
   }
@@ -1380,7 +1379,7 @@ button:hover::before {
 
 @media (max-width: 480px) {
   .header-title {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
 
   .search-input {

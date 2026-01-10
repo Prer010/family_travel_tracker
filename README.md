@@ -7,7 +7,7 @@ This project demonstrates **real-world backend architecture**, PostgreSQL integr
 ---
 
 ## 🚀 Live Demo
-> _(Add your deployed Vercel URL here once live)_
+> https://family-travel-tracker-m0wj.onrender.com
 
 ---
 

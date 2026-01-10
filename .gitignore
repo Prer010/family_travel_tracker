@@ -3,7 +3,6 @@ DEPLOYMENT.md
 
 # Config directory
 config/
-
 # Markdown files (except README)
 *.md
 !README.md

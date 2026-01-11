@@ -76,11 +76,24 @@ router.post("/add", requireAuth, async (req, res) => {
     const input = req.body["country"];
     const currentUserId = req.session.currentUserId;
 
+
     try {
+        // Check if any family members exist for this account
+        const usersResult = await req.db.query(
+            "SELECT id FROM users WHERE account_id = $1",
+            [req.session.accountId]
+        );
+
+        if (usersResult.rows.length === 0) {
+            res.redirect("/dashboard?error=" + encodeURIComponent("Add family member first."));
+            return;
+        }
+
         const result = await req.db.query(
             "SELECT country_code FROM countries WHERE LOWER(country_name) LIKE '%' || $1 || '%';",
             [input.toLowerCase()]
         );
+
 
         const data = result.rows[0];
         if (!data) {

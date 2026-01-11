@@ -290,7 +290,7 @@ nav {
   flex-wrap: wrap;
   gap: 2rem;
   margin-top: 2rem;
-  padding: 0.5rem 4rem;
+  padding: 0.5rem 2rem;
 }
 
 .card {
@@ -453,5 +453,60 @@ footer i {
 
   footer {
     justify-content: center;
+  }
+}
+
+@media (max-width: 425px) {
+
+  /* Decrease font sizes */
+  .landing-container h1 {
+    font-size: 3rem;
+  }
+
+  .landing-container p.lead {
+    font-size: 1.2rem;
+  }
+
+  #features h2 {
+    font-size: 1.8rem;
+    margin-left: 1.5rem;
+  }
+
+  .card h3 {
+    font-size: 1.1rem;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+  }
+
+  /* Decrease button sizes */
+  .auth-buttons a.auth-btn,
+  .auth-buttons button.auth-btn {
+    padding: 0.6rem 1rem !important;
+    font-size: 0.85rem !important;
+  }
+
+  .btn-primary {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  /* Decrease card-container x-direction padding */
+  .card-container {
+    padding: 0.5rem 1.5rem;
+  }
+
+  /* Decrease footer font size and padding */
+  footer {
+    font-size: 0.9rem;
+    padding: 30px 40px;
+    height: 300px;
+  }
+
+  footer i {
+    height: 28px;
+    width: 28px;
+    font-size: 28px;
   }
 }

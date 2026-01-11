@@ -17,14 +17,6 @@ This project demonstrates **real-world backend architecture**, PostgreSQL integr
 - Search, select and store countries visited by each member
 - Highlight visited countries on a world map
 - View and edit travel data separately for each family member
-- Secure session handling
-
-## 🧠 Project Overview
-
-- Applied basic **Create, Read, Update, Delete (CRUD)** operations using PostgreSQL
-- Google OAuth authentication
-- Database hosted on Supabase
-- APIs deployed on Vercel
 
 ---
 
@@ -35,6 +27,7 @@ This project demonstrates **real-world backend architecture**, PostgreSQL integr
 - CSS
 - JavaScript
 - EJS (templating)
+- GSAP (animation)
 
 ### Backend
 - Node.js
@@ -44,7 +37,7 @@ This project demonstrates **real-world backend architecture**, PostgreSQL integr
 - PostgreSQL (Supabase)
 
 ### Deployment
-- Backend: Vercel
+- Backend: Render
 - Database: Supabase
 - Version Control: Git + GitHub
 
